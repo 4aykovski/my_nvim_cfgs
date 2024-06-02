@@ -8,6 +8,77 @@ local plugins = {
     },
   },
   {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter'
+  },
+  {
+   'Wansmer/treesj',
+    keys = {
+        {
+         "gJ",
+         function()
+          require("treesj").join()
+         end,
+         desc = "Join",
+        },
+        {
+         "gS",
+         function()
+          require("treesj").split()
+         end,
+         desc = "Split",
+        },
+        {
+          "gM",
+          function()
+            require("treesj").toggle()
+          end,
+          desc = "Toggle",
+        }
+      },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      require('custom.configs.treesj')
+    end,
+  },
+   {
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>yx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>yX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>yL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>yQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
+  {
       "smoka7/multicursors.nvim",
       event = "VeryLazy",
       dependencies = {
@@ -47,6 +118,7 @@ local plugins = {
           dapui.close()
        end
       require("core.utils").load_mappings("dap")
+      require("core.utils").load_mappings("dapui")
     end
   },
   {
@@ -85,8 +157,6 @@ local plugins = {
   },
   {
     "rcarriga/nvim-dap-ui",
-    config = function (_, opts)
-    end
   }
 }
 return plugins

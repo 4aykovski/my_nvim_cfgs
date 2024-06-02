@@ -7,35 +7,45 @@ M.dap = {
       "<cmd> DapToggleBreakpoint <CR>",
       "Add breakpoint at line"
     },
-    ["<leader>dus"] = {
-      function ()
-        local widgets = require('dap.ui.widgets');
-        local sidebar = widgets.sidebar(widgets.scopes);
-        sidebar.open();
-      end,
-      "Open debugging sidebar"
-    },
     ["<leader>dc"] = {
       function ()
         require('dap').continue()
       end,
       "Debug start session"
     },
-    ["<F10>"] = {
+    ["<leader>dso"] = {
       function ()
         require('dap').step_over()
       end
     },
-    ["<F11>"] = {
+    ["<F10>"] = {
       function ()
         require('dap').step_into()
       end
     },
-    ["<F12>"] = {
+    ["<leader>dsu"] = {
       function ()
         require('dap').step_out()
       end
     },
+  }
+}
+
+M.dapui = {
+  plugin = true,
+  n = {
+    ["<leader>dui"] = {
+      function ()
+        require('dapui').open()
+      end,
+      "Open debugging sidebar"
+    },
+    ["<leader>duc"] = {
+      function ()
+        require('dapui').close()
+      end,
+      "Close debugging sidebar"
+    }
   }
 }
 
